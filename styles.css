@@ -1,0 +1,747 @@
+:root {
+  --bg-dark: #000000;
+  --surface-dark: #121212;
+  --primary-blue: #2196F3;
+  --danger-red: #ff4757;
+  --text-light: #ffffff;
+  --border-radius: 12px;
+  --primary-color: #2196F3;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --hover-color: #f5f5f5;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  min-height: 100vh;
+  color: #333;
+  padding: 30px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: var(--bg-color);
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.player-wrapper {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 15px 35px rgba(33, 150, 243, 0.15);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+#mainVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+.upload-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.upload-card, .control-panel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.upload-card:hover, .control-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(33, 150, 243, 0.2);
+}
+
+.upload-card i {
+  font-size: 3.2em;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.upload-card h3 {
+  color: #333;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.upload-card p {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+}
+
+button {
+  background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid #eee;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 133, 162, 0.1);
+}
+
+.advanced-features {
+  margin-top: 20px;
+  display: none; /* 默认隐藏高级功能区 */
+}
+
+/* 媒体查询适配移动端 */
+@media (max-width: 768px) {
+  .upload-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 10px;
+  }
+  
+  .player-wrapper {
+    padding: 20px;
+  }
+}
+
+/* 新增控制面板样式 */
+.control-panel {
+  margin-top: 40px;
+  border: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.control-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 0 0 20px 0;
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+}
+
+.control-item {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.control-item label {
+  color: #1E293B;
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.control-item label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+select, input[type="range"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 0.95em;
+  color: #334155;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 10px;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232196F3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 15px;
+  padding-right: 35px;
+}
+
+select:hover, input[type="range"]:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* 添加过渡动画 */
+.control-item, select, input[type="range"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+  .control-group {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .control-panel {
+    padding: 15px;
+  }
+}
+
+/* 添加拖放效果 */
+.drag-over {
+  border: 3px dashed var(--primary-color);
+  background-color: rgba(33, 150, 243, 0.05);
+}
+
+/* 修改控制面板样式 */
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.media-controls {
+    margin-bottom: 20px;
+}
+
+.source-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.source-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.source-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.url-input-group {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.url-input-group input {
+    flex: 1;
+    margin: 0;
+}
+
+.url-input-group button {
+    white-space: nowrap;
+}
+
+.control-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.control-item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .source-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .url-input-group {
+        flex-direction: column;
+    }
+    
+    .control-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 滑块容器样式 */
+.control-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+/* 滑块基础样式 */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    outline: none;
+    padding: 0; /* 移除内边距 */
+    margin: 10px 0;
+    border: none; /* 移除边框 */
+}
+
+/* Webkit浏览器的滑块样式 */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(33, 150, 243, 0.2);
+    margin-top: -6px; /* 调整滑块垂直位置 */
+    transition: all 0.3s ease;
+}
+
+/* Firefox浏览器的滑块样式 */
+input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(33, 150, 243, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* 滑块轨道样式（Firefox） */
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    border: none;
+}
+
+/* 滑块悬停效果 */
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3);
+}
+
+/* 控制组样式优化 */
+.control-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    align-items: center; /* 确保控制项垂直对齐 */
+}
+
+/* 标签样式优化 */
+.control-item label {
+    display: block;
+    margin-bottom: 10px;
+    color: #1E293B;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+/* 添加播放网格样式 */
+.playback-grid {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16/9;
+    display: grid;
+    grid-template-columns: repeat(80, 1fr);
+    gap: 1px;
+    background: #000;
+    padding: 2px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.grid-checkbox {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #fff;
+    border: none;
+    transition: background-color 0.1s ease;
+}
+
+.grid-checkbox:checked {
+    background: #666;
+}
+
+/* 移除悬停效果 */
+.grid-checkbox:hover {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* 确保网格容器样式正确 */
+.control-item {
+    background: #000;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .playback-grid {
+        grid-template-columns: repeat(20, 1fr);
+    }
+}
+
+/* 控制面板样式 */
+.controls-panel {
+    background: var(--surface-dark);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* 输入组样式 */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 15px;
+    color: var(--text-light);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: var(--text-light);
+}
+
+.btn-danger {
+    background: var(--danger-red);
+    color: var(--text-light);
+}
+
+/* 控制项样式 */
+.control-item {
+    background: var(--surface-dark);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.control-item label {
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* 下拉菜单样式 */
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    margin: 0;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: white;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+}
+
+select:hover {
+    border-color: var(--primary-color);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+/* 滑块样式 */
+input[type="range"] {
+    width: 100%;
+    height: 4px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--text-light);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* 播放网格样式 */
+.playback-grid {
+    background: var(--bg-dark);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* 开关按钮样式 */
+.mode-switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mode-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+#modeToggle {
+    display: none;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    background: var(--bg-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.switch-label:hover {
+    background: var(--hover-color);
+}
+
+#modeToggle:checked + .switch-label {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 播放网格样式 */
+.playback-grid {
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    gap: 1px;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.grid-checkbox {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
+    transition: background-color 0.1s ease;
+}
+
+.grid-checkbox:checked {
+    background: #666;
+    border-color: #666;
+}
+
+/* 恢复亮色主题 */
+.container {
+    background: var(--bg-color);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    padding: 20px;
+}
+
+.control-group {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.control-item {
+    background: var(--bg-color);
+    padding: 15px;
+}
+
+.control-item label {
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* 输入框和按钮样式 */
+input[type="text"] {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 8px 12px;
+}
+
+button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}

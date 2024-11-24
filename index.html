@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能媒体播放器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="player-wrapper">
+            <div class="video-container">
+                <video id="mainVideo" controls>
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+
+            <div class="controls-container">
+                <div class="media-controls">
+                    <div class="control-group">
+                        <div class="control-item">
+                            <label>媒体来源</label>
+                            <div class="source-buttons">
+                                <button class="source-btn" onclick="document.getElementById('localFile').click()">
+                                    <i class="fas fa-file-upload"></i>
+                                    <span>本地文件</span>
+                                </button>
+                                <div class="url-input-group">
+                                    <input type="text" id="urlInput" placeholder="输入媒体URL">
+                                    <button onclick="loadFromUrl()">加载</button>
+                                </div>
+                                <button id="cameraBtn" class="source-btn">
+                                    <i class="fas fa-camera"></i>
+                                    <span>摄像头</span>
+                                </button>
+                            </div>
+                            <input type="file" id="localFile" accept="video/*,image/*,audio/*" hidden>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-item">
+                        <label>滤镜效果</label>
+                        <select id="filterSelect">
+                            <option value="none">无滤镜</option>
+                            <option value="grayscale">黑白</option>
+                            <option value="sepia">复古</option>
+                            <option value="blur">模糊</option>
+                            <option value="brightness">明亮</option>
+                            <option value="contrast">高对比度</option>
+                            <option value="saturate">饱和</option>
+                            <option value="hue-rotate">色相旋转</option>
+                            <option value="invert">反色</option>
+                            <option value="opacity">透明</option>
+                            <option value="custom">自定义组合</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-item">
+                        <label>播放速度</label>
+                        <select id="playbackSpeed">
+                            <option value="0.5">0.5x</option>
+                            <option value="1.0" selected>1.0x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="2.0">2.0x</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-item">
+                        <label>亮度调节</label>
+                        <input type="range" id="brightnessRange" min="0" max="200" value="100">
+                    </div>
+                    
+                    <div class="control-item">
+                        <label>对比度调节</label>
+                        <input type="range" id="contrastRange" min="0" max="200" value="100">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-item">
+                        <div class="mode-switch">
+                            <label>播放模式</label>
+                            <div class="switch-wrapper">
+                                <input type="checkbox" id="modeToggle">
+                                <label for="modeToggle" class="switch-label">
+                                    <span class="mode-text">普通模式</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="playbackGrid" class="playback-grid" style="display: none;">
+                            <!-- 网格将通过 JavaScript 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
